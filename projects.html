@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dylan Chapman</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="shrinkNav.js"></script>
+    <script type="text/javascript" src="BJForm.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  	<div class="container-fluid">
+    	<div class="navbar-header">
+    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span> 
+  			</button>
+    	  	<a class="navbar-brand" href="#">Dylan Chapman</a>
+    	</div>
+    	<div class="collapse navbar-collapse" id="myNavbar">
+  			<ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Home</a></li>
+		        <li><a href="#">Resume</a></li>
+		        <li><a href="#">Projects</a></li>
+			</ul>	
+    	</div>
+	</div>
+</nav>
+
+	<div class="container-fluid top text-center">
+		<h1>Dylan Chapman</h1>
+		<img src="download.png" class="img-circle img-responsive" alt="Placeholder" style="display:inline" height="250" width="250">
+		<h2>Programmer</h2>
+	</div>
+
+
+	
+	<div class="bg1">
+
+		<div class="container">
+			<form name="bjform" role="form">
+				<div class="row">
+					<div class="col-sm-2">
+					Your First Card:
+					</div>
+					<div class="col-sm-2">
+						<select onchange="bestPlay()" name="card1">
+	  						<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="10">Jack</option>
+							<option value="10">Queen</option>
+							<option value="10">King</option>
+							<option value="Ace">Ace</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+					Your Second Card:
+					</div>
+					<div class="col-sm-2">
+						<select onchange="bestPlay()" name="card2">
+	  						<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="10">Jack</option>
+							<option value="10">Queen</option>
+							<option value="10">King</option>
+							<option value="Ace">Ace</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Dealer's Card:
+					</div>
+					<div class="col-sm-2">
+						<select onchange="bestPlay()" name="card3">
+	  						<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="10">Jack</option>
+							<option value="10">Queen</option>
+							<option value="10">King</option>
+							<option value="Ace">Ace</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Your Best Move:
+					</div>
+					<div class="col-sm-2">
+						<input type="text" name="move" disabled>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br>
+	<div class="container-fluid bg2">
+		<div class="row">
+			<div class="col-sm-4">Github</div>
+			<div class="col-sm-4">dylan.lchapman@gmail.com</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">+64 272111043</div>
+			<div class="col-sm-4"></div>
+		</div>
+
+<p id="demo"></p>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    myFunction(xhttp);
+    }
+}
+xhttp.open("GET", "books.xml", true);
+xhttp.send();
+
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    document.getElementById("demo").innerHTML =
+    xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+}
+</script>
+
+	</div>
+
+</body>
+</html>
