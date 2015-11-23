@@ -1,142 +1,62 @@
 function bestPlay() {
-	var output = document.getElementsByName("move")[0];
+
+
 	var card1 = document.getElementsByName("card1")[0];
 	var card2 = document.getElementsByName("card2")[0];
 	var card3 = document.getElementsByName("card3")[0];
+	
+	var rule1 = document.getElementsByName("rule1")[0];
+	var rule2 = document.getElementsByName("rule2")[0];
+	var rule3 = document.getElementsByName("rule3")[0];
+	var rule4 = document.getElementsByName("rule4")[0];
+	var rule5 = document.getElementsByName("rule5")[0];
+
+	
+	var fileName = "";
+
+	
+
+	if (rule1.value === "1") {
+		fileName = fileName + "1";
+	} else if (rule1.value === "2") {
+		fileName = fileName + "2";
+	} else if (rule1.value === "3") {
+		fileName = fileName + "3";
+	}
+
+	if (rule2.value === "1") {
+		fileName = fileName + "1";
+	} else if (rule2.value === "2") {
+		fileName = fileName + "2";
+	}
+
+	if (rule3.value === "1") {
+		fileName = fileName + "1";
+	} else if (rule3.value === "2") {
+		fileName = fileName + "2";
+	}
+
+	if (rule4.value === "1") {
+		fileName = fileName + "1";
+	} else if (rule4.value === "2") {
+		fileName = fileName + "2";
+	} else if (rule4.value === "3") {
+		fileName = fileName + "3";
+	}
+
+
+	if (rule5.value === "1") {
+		fileName = fileName + "1";
+	} else if (rule5.value === "2") {
+		fileName = fileName + "2";
+	}
+
 	
 	// 0 = Stand
 	// 1 = Hit
 	// 2 = Double or Hit
 	// 3 = Double or stand
 	// 4 = Split
-
-	// One deck, Stands on soft 17, Double after split, no surrender,
-	// dealer checks for blackjack
-	var table1 = [	
-			//	Hard  2  3  4  5  6  7  8  9  10 A 		Value		Index
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 5			0
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 6 			1
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 7			2
-					[ 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 ], // 8 			3
-					[ 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 ], // 9 		 	4
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ], // 10		 	5
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ], // 11 		6
-					[ 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 ], // 12 		7
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 13 		8
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 14		 	9
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 15 		10
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 16 		11
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 17 		12
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 18 		13
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 19 		14
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 20 		15
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 21 		16
-			//	Soft  2  3  4  5  6  7  8  9  10 A
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 13 		17
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 14 		18
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 15 		19
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 16 		20
-					[ 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 ], // 17 		21
-					[ 0, 3, 3, 3, 3, 0, 0, 1, 1, 0 ], // 18 		22
-					[ 0, 0, 0, 0, 3, 0, 0, 0, 0, 0 ], // 19 		23
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 20 		24
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 21 		25
-			//	Pair  2  3  4  5  6  7  8  9  10 A
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ], // 2, 2		26 4
-					[ 4, 4, 4, 4, 4, 4, 4, 1, 1, 1 ], // 3, 3		27 6
-					[ 1, 1, 4, 4, 4, 1, 1, 1, 1, 1 ], // 4, 4		28 8
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ], // 5, 5		29 10
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ], // 6, 6		30 12
-					[ 4, 4, 4, 4, 4, 4, 4, 1, 0, 1 ], // 7, 7		31 14
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ], // 8, 8		32 16
-					[ 4, 4, 4, 4, 4, 0, 4, 4, 0, 0 ], // 9, 9		33 18
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 10, 10		34 20 
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ]  // A, A 		35 22
-				];
-
-	// Two decks, Stands on soft 17, Double after split, no surrender,
-	// dealer checks for blackjack
-	var table2 = [	
-			//	Hard  2  3  4  5  6  7  8  9  10 A 		Value		Index
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 5			0
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 6 			1
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 7			2
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ], // 8 			3
-					[ 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 ], // 9 		 	4
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ], // 10		 	5
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ], // 11 		6
-					[ 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 ], // 12 		7
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 13 		8
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 14		 	9
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 15 		10
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ], // 16 		11
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 17 		12
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 18 		13
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 19 		14
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 20 		15
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 21 		16
-			//	Soft  2  3  4  5  6  7  8  9  10 A
-					[ 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 ], // 13 		17
-					[ 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 ], // 14 		18
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 15 		19
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ], // 16 		20
-					[ 1, 2, 2, 2, 2, 1, 1, 1, 1, 1 ], // 17 		21
-					[ 0, 3, 3, 3, 3, 0, 0, 1, 1, 1 ], // 18 		22
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 19 		23
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 20 		24
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 21 		25
-			//	Pair  2  3  4  5  6  7  8  9  10 A
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ], // 2, 2		26 4
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ], // 3, 3		27 6
-					[ 1, 1, 1, 4, 4, 1, 1, 1, 1, 1 ], // 4, 4		28 8
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ], // 5, 5		29 10
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ], // 6, 6		30 12
-					[ 4, 4, 4, 4, 4, 4, 4, 1, 1, 1 ], // 7, 7		31 14
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ], // 8, 8		32 16
-					[ 4, 4, 4, 4, 4, 0, 4, 4, 0, 0 ], // 9, 9		33 18
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // 10, 10		34 20 
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ]  // A, A 		35 22
-				];
-	// four to eight decks, Stands on soft 17, Double after split,
-	// no surrender, dealer checks for blackjack
-	var table3 = [
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
-					[ 1, 2, 2, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ],
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 ],
-					[ 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 1, 1, 2, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 1, 2, 2, 2, 2, 1, 1, 1, 1, 1 ],
-					[ 0, 3, 3, 3, 3, 0, 0, 1, 1, 1 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ],
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ],
-					[ 1, 1, 1, 4, 4, 1, 1, 1, 1, 1 ],
-					[ 2, 2, 2, 2, 2, 2, 2, 2, 1, 1 ],
-					[ 4, 4, 4, 4, 4, 1, 1, 1, 1, 1 ],
-					[ 4, 4, 4, 4, 4, 4, 1, 1, 1, 1 ],
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ],
-					[ 4, 4, 4, 4, 4, 0, 4, 4, 0, 0 ],
-					[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-					[ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 ]
-				];
 
 	
 	var col = 0;
@@ -193,23 +113,43 @@ function bestPlay() {
 		row = (parseInt(card1.value) + parseInt(card2.value)) - 5;
 	}
 
-	var move = table1[row][col];
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+    	if (xhttp.readyState == 4 && xhttp.status == 200) {
+    		myFunction(xhttp, row, col);
+    	}	
+	}
+	xhttp.open("GET", "tables/"+fileName+".xml", true);
+	xhttp.send();
+}
+
+
+function myFunction(xml, row, col) {
+	var output = document.getElementsByName("move")[0];
+    var xmlDoc = xml.responseXML;
+    //var move = xmlDoc.getElementsByTagName("row")[row].childNodes[col].childNodes[0].nodeValue;
+    //alert("ROW: " + row + " COL: " + col);
+    var move = xmlDoc.getElementsByTagName("row")[row].getElementsByTagName("col")[col].childNodes[0].nodeValue;
 	var answer = "";
 	switch (move) {
-		case 0:
+		case "S":
 			answer = "Stand";
 			break;
-		case 1:
+		case "H":
 			answer = "Hit";
 			break;
-		case 2:
+		case "Dh":
 			answer = "Double or Hit";
 			break;
-		case 3:
+		case "Ds":
 			answer = "Double or Stand";
 			break;
-		case 4:
+		case "P":
 			answer = "Split";
+			break;
+		case "Rh":
+			answer = "Surrender";
 			break;
 		default:
 			answer = "ERROR";
@@ -217,7 +157,4 @@ function bestPlay() {
 	}
 
 	output.value = answer;
-
 }
-
-

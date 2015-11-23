@@ -13,7 +13,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
   	<div class="container-fluid">
     	<div class="navbar-header">
@@ -26,9 +25,9 @@
     	</div>
     	<div class="collapse navbar-collapse" id="myNavbar">
   			<ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Home</a></li>
-		        <li><a href="#">Resume</a></li>
-		        <li><a href="#">Projects</a></li>
+		        <li><a href="index.html">Home</a></li>
+		        <li><a href="Dylan Chapman CV.pdf">Resume</a></li>
+		        <li class="active"><a href="#">Projects</a></li>
 			</ul>	
     	</div>
 	</div>
@@ -39,13 +38,69 @@
 		<img src="download.png" class="img-circle img-responsive" alt="Placeholder" style="display:inline" height="250" width="250">
 		<h2>Programmer</h2>
 	</div>
-
-
 	
 	<div class="bg1">
 
 		<div class="container">
 			<form name="bjform" role="form">
+				<div class="row">
+					<div class="col-sm-2">
+						Decks:
+					</div>
+					<div class="col-sm-2">
+						<select name="rule1" onchange="bestPlay()">
+            				<option value="1">1</option>
+            				<option value="2">2</option>
+            				<option value="3">4 or more</option>
+        				</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Soft 17:
+					</div>
+					<div class="col-sm-2">
+						<select name="rule2" onchange="bestPlay()">
+            				<option value="1">Dealer Stands</option>
+            				<option value="2">Dealer Hits</option>
+        				</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Double After Split:
+					</div>
+					<div class="col-sm-2">
+						<select name="rule3" onchange="bestPlay()">
+            				<option value="1">Allowed</option>
+            				<option value="2">Not Allowed</option>
+        				</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Surrender:
+					</div>
+					<div class="col-sm-2">
+						<select name="rule4" onchange="bestPlay()">
+            				<option value="1">Not Allowed</option>
+           					<option value="2">Allowed with any dealer upcard</option>
+            				<option value="3">Allowed on a dealer 2 through 10</option>
+        				</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2">
+						Dealer peek:
+					</div>
+					<div class="col-sm-2">
+						<select name="rule5" onchange="bestPlay()">
+	            			<option value="1">Dealer peeks for blackjack</option>
+            				<option value="2">No peek/no hole card (European)</option>
+        				</select>
+					</div>
+				</div>
+				<br>
 				<div class="row">
 					<div class="col-sm-2">
 					Your First Card:
@@ -118,6 +173,7 @@
 					</div>
 					<div class="col-sm-2">
 						<input type="text" name="move" disabled>
+						<script>bestPlay()</script>
 					</div>
 				</div>
 			</form>
@@ -126,33 +182,9 @@
 	<br>
 	<div class="container-fluid bg2">
 		<div class="row">
-			<div class="col-sm-4">Github</div>
 			<div class="col-sm-4">dylan.lchapman@gmail.com</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-4">+64 272111043</div>
-			<div class="col-sm-4"></div>
 		</div>
-
-<p id="demo"></p>
-
-<script>
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-    myFunction(xhttp);
-    }
-}
-xhttp.open("GET", "books.xml", true);
-xhttp.send();
-
-function myFunction(xml) {
-    var xmlDoc = xml.responseXML;
-    document.getElementById("demo").innerHTML =
-    xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-}
-</script>
-
 	</div>
 
 </body>
