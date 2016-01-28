@@ -8,13 +8,26 @@ nav.navbar {
 	background-color: #FAFAFA;
 }
 
-img {
+#dp {
 	box-shadow: 0px 0px 10px #888888;
 }
 
 .bg2 {
 	background-color: #9E9E9E;
 }
+
+ul { 
+    display: block;
+    white-space: nowrap;
+    overflow: auto; 
+}
+
+li { 
+    width: 80px;
+    display: inline-block;
+}
+
+
 
 /*nav {
 

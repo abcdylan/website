@@ -1,6 +1,5 @@
 function bestPlay() {
 
-
 	var card1 = document.getElementsByName("card1")[0];
 	var card2 = document.getElementsByName("card2")[0];
 	var card3 = document.getElementsByName("card3")[0];
@@ -157,4 +156,130 @@ function myFunction(xml, row, col) {
 	}
 
 	output.value = answer;
+}
+
+
+function cardSelect() {
+
+	var card;
+	if (event.target.getAttribute("class") == "card1") {
+		card = 1;
+		var cards1 = document.getElementsByClassName("card1");
+		for (var i = 0; i < cards1.length; i++) {
+			if (i < 9) {
+				var cardNum = i+2;
+			} else if (i == 9) {
+				var cardNum = "jack";
+			} else if (i == 10) {
+				var cardNum = "queen";
+			} else if (i == 11) {
+				var cardNum = "king";
+			} else if (i == 12) {
+				var cardNum = "ace";
+			}
+			cards1[i].setAttribute("src", "cards/"+cardNum+"_of_spades.png");
+		}
+	}
+	if (event.target.getAttribute("class") == "card2") {
+		card = 2;
+		var cards2 = document.getElementsByClassName("card2");
+		for (var i = 0; i < cards2.length; i++) {
+			if (i < 9) {
+				var cardNum = i+2;
+			} else if (i == 9) {
+				var cardNum = "jack";
+			} else if (i == 10) {
+				var cardNum = "queen";
+			} else if (i == 11) {
+				var cardNum = "king";
+			} else if (i == 12) {
+				var cardNum = "ace";
+			}
+			cards2[i].setAttribute("src", "cards/"+cardNum+"_of_spades.png");
+		}
+	}
+	if (event.target.getAttribute("class") == "card3") {
+		card = 3;
+		var cards3 = document.getElementsByClassName("card3");
+		for (var i = 0; i < cards3.length; i++) {
+			if (i < 9) {
+				var cardNum = i+2;
+			} else if (i == 9) {
+				var cardNum = "jack";
+			} else if (i == 10) {
+				var cardNum = "queen";
+			} else if (i == 11) {
+				var cardNum = "king";
+			} else if (i == 12) {
+				var cardNum = "ace";
+			}
+			cards3[i].setAttribute("src", "cards/"+cardNum+"_of_spades.png");
+		}
+	}
+
+
+	var cardId = event.target.id.substring(0,1);
+	var valToSet;
+
+	switch(cardId) {
+		case "2":
+			valToSet = "2";
+			break;
+		case "3":
+			valToSet = "3";
+			break;
+		case "4":
+			valToSet = "4";
+			break;
+		case "5":
+			valToSet = "5";
+			break;
+		case "6":
+			valToSet = "6";
+			break;
+		case "7":
+			valToSet = "7";
+			break;
+		case "8":
+			valToSet = "8";
+			break;
+		case "9":
+			valToSet = "9";
+			break;
+		case "1":
+			valToSet = "10";
+			break;
+		case "j":
+			valToSet = "10";
+			break;
+		case "q":
+			valToSet = "10";
+			break;
+		case "k":
+			valToSet = "10";
+			break;
+		case "a":
+			valToSet = "Ace"
+			break;
+	}
+
+
+	if(card == 1) {
+		document.getElementsByName("card1")[0].value = valToSet;
+	} else if (card == 2) {
+		document.getElementsByName("card2")[0].value = valToSet;
+	} else {
+		document.getElementsByName("card3")[0].value = valToSet;
+	}
+
+
+	var targ = document.getElementById(event.target.id);
+	var imgurl = targ.src;
+
+	targ.setAttribute("style", "background:url("+imgurl+"); background-size:100%");
+	targ.setAttribute("src", "tick.png");
+	
+bestPlay();
+
+
 }
