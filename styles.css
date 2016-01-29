@@ -16,17 +16,31 @@ nav.navbar {
 	background-color: #9E9E9E;
 }
 
+body{
+	margin: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0;
+	padding-top: 100px;
+}
+
+
+#dropdownselect{
+	display: none;
+}
+
 ul { 
     display: block;
     white-space: nowrap;
     overflow: auto; 
+    padding: 0px;
 }
 
 li { 
+	cursor: pointer;
     width: 80px;
     display: inline-block;
 }
-
 
 
 /*nav {

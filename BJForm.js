@@ -126,6 +126,7 @@ function bestPlay() {
 
 function myFunction(xml, row, col) {
 	var output = document.getElementsByName("move")[0];
+	var output2 = document.getElementsByName("move")[1];
     var xmlDoc = xml.responseXML;
     //var move = xmlDoc.getElementsByTagName("row")[row].childNodes[col].childNodes[0].nodeValue;
     //alert("ROW: " + row + " COL: " + col);
@@ -156,6 +157,7 @@ function myFunction(xml, row, col) {
 	}
 
 	output.value = answer;
+	output2.innerHTML = "Your best move: " +answer;
 }
 
 
